@@ -1,21 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import * as Sentry from '@sentry/react'
-import { BrowserTracing } from '@sentry/tracing'
+import logger from './app/service/log.service'
+
 import './index.css'
 import App from './app/App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-Sentry.init({
-  dsn: 'https://fc93fe95e3eb42baad66a9c51697878e@o1137986.ingest.sentry.io/6191292',
-  integrations: [new BrowserTracing()],
 
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
-})
+logger.init()
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

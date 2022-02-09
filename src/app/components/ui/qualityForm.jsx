@@ -1,21 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SelectField from '../common/form/selectField'
 import TextField from '../common/form/textField'
 import colors from '../../constants/colors.json'
+import useForm from '../../hooks/useForm'
+import { useQualities } from '../../hooks/useQualities'
 
-const EditForm = ({ data, onSubmit }) => {
-  console.log(data)
-  const [form, setForm] = useState(data || {})
-  const handeleSubmit = (e) => {
-    e.preventDefault()
-    onSubmit(form)
-  }
-  const handleChange = (target) => {
-    setForm((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }))
-  }
+const QualityForm = ({ onSubmit }) => {
+  const { form, handeleSubmit, handleChange } = useForm({}, onSubmit)
+  const data = useQualities()
+  console.log('data from Form', data)
   return (
     <form onSubmit={handeleSubmit}>
       <TextField
@@ -36,4 +29,4 @@ const EditForm = ({ data, onSubmit }) => {
   )
 }
 
-export default EditForm
+export default QualityForm
