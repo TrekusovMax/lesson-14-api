@@ -1,4 +1,4 @@
-import httpService from '../service/http.service'
+import httpService from './http.service'
 const qualityEndpoint = 'quality/'
 
 const qualityService = {
@@ -12,6 +12,14 @@ const qualityService = {
   },
   fetchAll: async () => {
     const { data } = await httpService.get(qualityEndpoint)
+    return data
+  },
+  create: async (content) => {
+    const { data } = await httpService.post(qualityEndpoint, content)
+    return data
+  },
+  delete: async (id) => {
+    const { data } = await httpService.delete(qualityEndpoint + id)
     return data
   },
 }
